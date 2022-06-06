@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './components/header/Header';
 import Products from './components/products/Products';
+import { useState } from 'react';
 
 const App = () => {
   const productsArr = 
@@ -245,10 +246,24 @@ const App = () => {
       }
     }
   ]
+  let selectValue = "";
+  const [filtersArr, setfiltersArr] = useState(productsArr);
+  function filtersArray(selectCategory){
+    if (selectCategory === "all prodacts"){ setfiltersArr(productsArr) }
+      else{
+    setfiltersArr(productsArr.filter((product) => product.category === selectCategory))}
+  }
     return (
     <div>
-      <Header />
-      <Products productsArr={productsArr}/>
+      <Header 
+      productsArr={productsArr} 
+      filtersArray={filtersArray} 
+      selectValue = {selectValue}
+      />
+      <Products 
+      productsArr={filtersArr}
+      />
+      
     </div>
     )};
 

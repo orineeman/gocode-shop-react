@@ -1,34 +1,42 @@
+
 import './Header.css'
 
-const Header = () => {
-    return (
+const Header = ({productsArr, filtersArray}) => {
+  const categories = productsArr.map(p => p.category).filter((value, index, array) => array.indexOf(value)===index);
+  
+  return (
       <nav className="product-filter">
         <h1>Jackets</h1> <div className="sort">
         <div className="collection-sort">
         <label>Filter by:</label>
-        <select>
-          <option value="/">All Jackets</option>
-          <option value="/">2016</option>
-          <option value="/">jacket</option>
-          <option value="/">Jackets</option>
-          <option value="/">layers</option>
-          <option value="/">Obermeyer</option>
-          <option value="/">Roxy</option>
-          <option value="/">womens</option>
+        <select
+         onChange = {(e)=>{
+          let selectValue = e.target.value;
+          filtersArray(selectValue);
+          }
+        }
+         >
+           <option>all prodacts</option>
+          {categories.map((category)=> 
+          <option key = {category}>{category}</option>
+          )}
         </select>
         
       </div><div className="collection-sort">
-        <label>Filter by:</label>
-        <select>
-          <option value="/">All Jackets</option>
-          <option value="/">2016</option>
-          <option value="/">jacket</option>
-          <option value="/">Jackets</option>
-          <option value="/">layers</option>
-          <option value="/">Obermeyer</option>
-          <option value="/">Roxy</option>
-          <option value="/">womens</option>
-        </select>
+      <label>Sort by:</label>
+          <select
+          // onChange={(e)=>
+          //   console.log(e) }
+            >
+            <option value="/">Featured</option>
+            <option value="/">Best Selling</option>
+            <option value="/">Alphabetically, A-Z</option>
+            <option value="/">Alphabetically, Z-A</option>
+            <option value="/">Price, low to high</option>
+            <option value="/">Price, high to low</option>
+            <option value="/">Date, new to old</option>
+            <option value="/">Date, old to new</option>
+          </select>
         
       </div>
       </div>
