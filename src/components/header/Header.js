@@ -25,8 +25,6 @@ const Header = ({productsArr, filtersArray}) => {
       </div><div className="collection-sort">
       <label>Sort by:</label>
           <select
-          // onChange={(e)=>
-          //   console.log(e) }
             >
             <option value="/">Featured</option>
             <option value="/">Best Selling</option>
