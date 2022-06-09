@@ -1,9 +1,7 @@
 
 import './Header.css'
 
-const Header = ({productsArr, filtersArray}) => {
-  const categories = productsArr.map(p => p.category).filter((value, index, array) => array.indexOf(value)===index);
-  
+const Header = ({categories, filtersArray}) => {
   return (
       <nav className="product-filter">
         <h1>Jackets</h1> <div className="sort">
@@ -16,9 +14,9 @@ const Header = ({productsArr, filtersArray}) => {
           }
         }
          >
-           <option>all prodacts</option>
+           <option value="all prodacts">all prodacts</option>
           {categories.map((category)=> 
-          <option key = {category}>{category}</option>
+          <option key = {category} value= {category}>{category}</option>
           )}
         </select>
         
