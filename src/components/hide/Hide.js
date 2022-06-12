@@ -15,7 +15,9 @@ import "./Hide.css";
 
 function Hide({hideProducts}) {
     return(
-        <button className="hide" onClick = {()=> {hideProducts()}}>Hide products</button>  
+        <>
+        {/* <button className="hide" onClick = {()=> {hideProducts()}}>Hide products</button>   */}
+        </>
     )  
 }
 export default Hide;

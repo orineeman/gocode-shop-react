@@ -1,0 +1,11 @@
+.cart{
+    position: fixed;
+    /* border: 3px solid rgb(122, 171, 255); */
+    width: 200px;
+    border-radius: 10px;
+    
+}
+p{
+    font-size: 30px;
+    color: cornflowerblue;
+}

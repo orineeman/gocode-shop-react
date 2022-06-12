@@ -1,10 +1,13 @@
 
 import './Header.css'
 
-const Header = ({categories, filtersArray}) => {
+const Header = ({categories, filtersArray, fetchProducts}) => {
   return (
       <nav className="product-filter">
-        <h1>Jackets</h1> <div className="sort">
+        <h1>Gocode-shop</h1> <div className="sort">
+
+          {/* <button onClick={()=>{fetchProducts()}}>fetch again</button> */}
+
         <div className="collection-sort">
         <label>Filter by:</label>
         <select
