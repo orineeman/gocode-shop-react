@@ -7,6 +7,7 @@ function ProductCart({product}) {
     <div className="product-image">
     </div>{" "}
     <div className="info">
+    {/* <img className="image" src={product.image}  alt= "product"/> */}
       <h5>{product.title}</h5> </div>
       <div><h6>{product.price}</h6>
       </div><div className="btn-div">

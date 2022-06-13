@@ -6,7 +6,7 @@
  width: 200px;
  height: 70px;
  color: black;
- background-color: rgb(154, 185, 243);
+ background-color: rgb(255, 203, 203);
  border-radius: 10px;
  border: 2px solid black;
  margin: 10px;
@@ -31,4 +31,7 @@ button{
     border-radius: 3px;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
+}
+.image{
+    max-width: 10px;
 }
