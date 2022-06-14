@@ -1,32 +1,35 @@
+import "./Header.css";
 
-import './Header.css'
-
-const Header = ({categories, filtersArray, fetchProducts}) => {
+const Header = ({categories, filtersArray ,sumCartProducts,setNoHidden}) => {
   return (
-      <nav className="product-filter">
-        <h1>Gocode-shop</h1> <div className="sort">
-
-          {/* <button onClick={()=>{fetchProducts()}}>fetch again</button> */}
-
+    <nav className="product-filter">
+      <div className="logocart"><h1>Gocode-shop</h1>
+      <div className="cart-icon-flex" onClick={()=>setNoHidden(true)}>
+      <img className="cart-icon"  src="https://img.icons8.com/material-rounded/344/shopping-cart-loaded.png" alt="cart"/>
+      <div className="quant">{sumCartProducts}</div>
+      </div>
+      </div>
+      <div>
+      <div className="sort">
         <div className="collection-sort">
-        <label>Filter by:</label>
-        <select
-         onChange = {(e)=>{
-          let selectValue = e.target.value;
-          filtersArray(selectValue);
-          }
-        }
-         >
-           <option value="all prodacts">all prodacts</option>
-          {categories.map((category)=> 
-          <option key = {category} value= {category}>{category}</option>
-          )}
-        </select>
-        
-      </div><div className="collection-sort">
-      <label>Sort by:</label>
+          <label>Filter by:</label>
           <select
-            >
+            onChange={(e) => {
+              let selectValue = e.target.value;
+              filtersArray(selectValue);
+            }}
+          >
+            <option value="all prodacts">all prodacts</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="collection-sort">
+          <label>Sort by:</label>
+          <select>
             <option value="/">Featured</option>
             <option value="/">Best Selling</option>
             <option value="/">Alphabetically, A-Z</option>
@@ -36,11 +39,11 @@ const Header = ({categories, filtersArray, fetchProducts}) => {
             <option value="/">Date, new to old</option>
             <option value="/">Date, old to new</option>
           </select>
-        
+        </div>
       </div>
       </div>
-      </nav>
-    );
-  };
+    </nav>
+  );
+};
 
-  export default Header;
+export default Header;

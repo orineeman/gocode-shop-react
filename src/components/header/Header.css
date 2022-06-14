@@ -3,10 +3,38 @@ h1 {
     font-weight: 300;
     flex: 1;
   }
+  .cart-icon-flex{
+  display: flex;
+align-items: center;
+/* justify-content: baseline; */
+  }
+.cart-icon{
+  height: 50px;
+}
+.logocart{
+  display: flex;
+  /* border: 1px solid red; */
+  width: 300px;
+}
+.quant{
+  /* border: 1px solid red; */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: black;
+  color: aliceblue;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 3px;
+
+
+}
 
   .product-filter {
     display: flex;
     padding: 30px 0;
+    justify-content: space-around;
   }
 
   .sort {

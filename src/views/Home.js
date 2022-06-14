@@ -9,15 +9,15 @@ let arrProductsCart = [];
 export default function Home() {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [cartIsFull, setCartIsFull] = useState(false);
   const [addToTheCartArr, setAddToTheCartArr] = useState(arrProductsCart);
   const [productsFilterArr, setProductsFilterArr] = useState([]);
   const [productsArr, setProductsArr] = useState([]);
+  const [sumCartProducts, setSumCartProducts] = useState(0);
   let categories = [];
 
-  const [hidden, setHidden] = useState(true);
+  const [noHidden, setNoHidden] = useState(false);
   // function hideCart() {
-    // setHidden(!hidden);
+  // setHidden(!hidden);
   // }
   const fetchProducts = () => {
     setIsLoading(true);
@@ -59,26 +59,34 @@ export default function Home() {
       addToTheCartArr[indexInArrCart].quantity++;
       setAddToTheCartArr([...addToTheCartArr]);
     }
-    setCartIsFull(true);
+    sumOfProductsCart();
   }
 
   function removeOfCart(productId) {
-    const indexInArrCartToRemove = addToTheCartArr.findIndex((p) => p.id === productId);
-    if (indexInArrCartToRemove === -1){
+    const indexInArrCartToRemove = addToTheCartArr.findIndex(
+      (p) => p.id === productId
+    );
+    if (indexInArrCartToRemove === -1) {
       console.log("not on cart");
-    } else if (addToTheCartArr[indexInArrCartToRemove].quantity > 1 ){
+    } else if (addToTheCartArr[indexInArrCartToRemove].quantity > 1) {
       addToTheCartArr[indexInArrCartToRemove].quantity--;
       setAddToTheCartArr([...addToTheCartArr]);
     } else {
       arrProductsCart = addToTheCartArr.filter(
-        (product) => product.id !== productId);
-        console.log(arrProductsCart);
-        addToTheCartArr[indexInArrCartToRemove].quantity--;
-        setAddToTheCartArr([...arrProductsCart]);
+        (product) => product.id !== productId
+      );
+      // console.log(arrProductsCart);
+      addToTheCartArr[indexInArrCartToRemove].quantity--;
+      setAddToTheCartArr([...arrProductsCart]);
+      if (addToTheCartArr.length === 0) {
       }
-      if (addToTheCartArr.length === false) {
-      setCartIsFull(false);
     }
+    sumOfProductsCart();
+  }
+  function sumOfProductsCart() {
+    let sumOfProducts = 0;
+    addToTheCartArr.forEach((p) => (sumOfProducts += p.quantity));
+    setSumCartProducts(sumOfProducts);
   }
   return (
     <div>
@@ -92,15 +100,21 @@ export default function Home() {
         <>
           {/* <Hide hideCart={hideCart} hidden={hidden} /> */}
           <AddCartContext.Provider value={{ addToCart: addToCart }}>
-          <RemoveCartContext.Provider value={{ removeOfCart: removeOfCart }}>
-          {cartIsFull && hidden && <Cart addToTheCartArr={addToTheCartArr} setAddToTheCartArr={setAddToTheCartArr} arrProductsCart={arrProductsCart}/>}
-          <Header
-            categories={categories}
-            filtersArray={filtersArray}
-            fetchProducts={fetchProducts}
-          />
+            <RemoveCartContext.Provider value={{ removeOfCart: removeOfCart }}>
+              {noHidden && (
+                <Cart
+                  addToTheCartArr={addToTheCartArr}
+                  setNoHidden={setNoHidden}
+                />
+              )}
+              <Header
+                setNoHidden={setNoHidden}
+                sumCartProducts={sumCartProducts}
+                categories={categories}
+                filtersArray={filtersArray}
+              />
 
-              <Products productsArr={productsFilterArr} hidden={hidden} />
+              <Products productsArr={productsFilterArr} />
             </RemoveCartContext.Provider>
           </AddCartContext.Provider>
         </>
