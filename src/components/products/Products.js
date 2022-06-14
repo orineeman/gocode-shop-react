@@ -1,7 +1,7 @@
 import Product from "../product/Product";
 import "./Products.css";
 
-const Products = ({ productsArr , hiddens}) => {
+const Products = ({productsArr}) => {
   return (
     <section className="products">
       

@@ -22,9 +22,6 @@ h5 {
 
     margin: 6px;
   }
-  .product-card:hover{
-    opacity: 0.8;
-  }
   
   .product-image img {
     width: 100%;

@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import AddCartContext from "../CartContext/AddCartContext";
+import RemoveCartContext from "../CartContext/RemoveCartContext";
 import "./ProductCart.css";
 
 function ProductCart({product}) {
-    // console.log(product);
-    return(
+  const {addToCart} = useContext(AddCartContext);
+  const {removeOfCart} = useContext(RemoveCartContext);  
+  return(
   <div className="product-cart">
     <div className="product-image">
     </div>{" "}
@@ -11,12 +15,11 @@ function ProductCart({product}) {
       <h5>{product.title}</h5> </div>
       <div><h6>{product.price}</h6>
       </div><div className="btn-div">
-      <button>+</button>
-      <div className="quantity"></div>
-      <button>-</button>
+      <button onClick={()=> addToCart(product.id)}>+</button>
+      <div className="quantity">{product.quantity}</div>
+      <button onClick={()=> removeOfCart(product.id)}>-</button>
       </div>
   </div>
   )
 }
-
 export default ProductCart;

@@ -18,7 +18,7 @@ const Product = ({product}) => {
         <h6>{product.price}</h6>
       </div><div className='btnDiv'>
       <button className="addToCart" onClick={()=> addToCart(product.id)}>+</button>
-      <div className='quantity'><div className='quantityNumber'>0</div></div>
+      <div className='quantity'><div className='quantityNumber'>{product.quantity}</div></div>
       <button className="addToCart" onClick={()=> removeOfCart(product.id)}>-</button>
       </div></div> );};
  
