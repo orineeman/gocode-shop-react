@@ -51,7 +51,8 @@ export default function Home() {
     const indexInArrCart = addToTheCartArr.findIndex((p) => p.id === productId);
     if (indexInArrCart === -1) {
       findToCart.quantity++;
-      setAddToTheCartArr([...addToTheCartArr, findToCart]);
+      addToTheCartArr.push(findToCart);
+      setAddToTheCartArr([...addToTheCartArr]);
     } else {
       addToTheCartArr[indexInArrCart].quantity++;
       setAddToTheCartArr([...addToTheCartArr]);
@@ -72,7 +73,6 @@ export default function Home() {
       arrProductsCart = addToTheCartArr.filter(
         (product) => product.id !== productId
       );
-      // console.log(arrProductsCart);
       addToTheCartArr[indexInArrCartToRemove].quantity--;
       setAddToTheCartArr([...arrProductsCart]);
       if (addToTheCartArr.length === 0) {
@@ -82,14 +82,13 @@ export default function Home() {
   }
   function sumOfProductsCart() {
     let sumOfProducts = 0;
-    console.log(addToTheCartArr);
     addToTheCartArr.forEach((p) => (sumOfProducts += p.quantity));
     setSumCartProducts(sumOfProducts);
   }
   function filterByPrice(value) {
     setProductsFilterArr(
       productsArr.filter(
-        (product) => product.price > value[0] && product.price < value[1]
+        (product) => product.price >= value[0] && product.price <= value[1]
       )
     );
   }

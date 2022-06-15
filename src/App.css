@@ -187,3 +187,8 @@ body {
   left: 500px;
   font-size: 60px;
 }
+@media screen and (max-width: 500px) {
+.loader {
+  top: 100px;
+  left: 150px;
+}}

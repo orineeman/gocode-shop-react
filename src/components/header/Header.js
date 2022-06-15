@@ -25,6 +25,7 @@ const Header = ({
   };
 
   return (
+    
     <nav className="product-filter">
       <div className="logocart">
         <h1>Gocode-shop</h1>
@@ -38,7 +39,7 @@ const Header = ({
         </div>
       </div>
       <div className="slider">
-        <label>Sort by price:</label>
+        <label>Filter by price:</label>
         <Slider
           getAriaLabel={() => "Sort by price"}
           value={value}

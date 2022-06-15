@@ -10,19 +10,20 @@ function Cart({ addToTheCartArr ,setNoHidden}) {
     <div className="cart">
 
       <div className="div-cart">
-        <p>your cart</p>
+        <p>Your cart</p>
         <button className="close-cart" 
         onClick={()=>setNoHidden(false)}
         >
-          <h3>hide cart</h3>
+          <h3>Hide cart</h3>
         </button>
       
       </div>
+      <div className="div-cart-product">
       {addToTheCartArr.map((product) => (
         <ProductCart key={product.id} product={product} />
       ))}
-
-      <div className="price">Total cost: {total}</div>
+</div>
+      <div className="price">Total cost: {total}  $</div>
     </div>
   );
 }

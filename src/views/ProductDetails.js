@@ -18,7 +18,7 @@ export default function ProductDetails() {
       <div className="product">
         {" "}
         <div className="product-image">
-          <img className="image" src={productDetails.image} alt="product" />
+          <img className="image-details" src={productDetails.image} alt="product" />
         </div>{" "}
         <div className="product-info">
           <div className="description">
