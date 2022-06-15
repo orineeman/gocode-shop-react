@@ -16,9 +16,6 @@ export default function Home() {
   let categories = [];
 
   const [noHidden, setNoHidden] = useState(false);
-  // function hideCart() {
-  // setHidden(!hidden);
-  // }
   const fetchProducts = () => {
     setIsLoading(true);
     fetch("https://fakestoreapi.com/products")
@@ -35,6 +32,7 @@ export default function Home() {
   useEffect(() => {
     fetchProducts();
   }, []);
+
   categories = productsArr
     .map((p) => p.category)
     .filter((value, index, array) => array.indexOf(value) === index);
@@ -50,7 +48,6 @@ export default function Home() {
   }
   function addToCart(productId) {
     const findToCart = productsArr.find((p) => p.id === productId);
-    // console.log(findToCart);
     const indexInArrCart = addToTheCartArr.findIndex((p) => p.id === productId);
     if (indexInArrCart === -1) {
       findToCart.quantity++;
@@ -85,8 +82,16 @@ export default function Home() {
   }
   function sumOfProductsCart() {
     let sumOfProducts = 0;
+    console.log(addToTheCartArr);
     addToTheCartArr.forEach((p) => (sumOfProducts += p.quantity));
     setSumCartProducts(sumOfProducts);
+  }
+  function filterByPrice(value) {
+    setProductsFilterArr(
+      productsArr.filter(
+        (product) => product.price > value[0] && product.price < value[1]
+      )
+    );
   }
   return (
     <div>
@@ -112,6 +117,8 @@ export default function Home() {
                 sumCartProducts={sumCartProducts}
                 categories={categories}
                 filtersArray={filtersArray}
+                filterByPrice={filterByPrice}
+                productsArr={productsArr}
               />
 
               <Products productsArr={productsFilterArr} />

@@ -14,7 +14,7 @@ function Cart({ addToTheCartArr ,setNoHidden}) {
         <button className="close-cart" 
         onClick={()=>setNoHidden(false)}
         >
-          <h3>close cart</h3>
+          <h3>hide cart</h3>
         </button>
       
       </div>
