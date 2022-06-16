@@ -14,27 +14,36 @@ export default function ProductDetails() {
   return (
     <div className="product-details">
       <h1>Product details</h1>
-      <h5  className="h5-title">{productDetails.title}</h5>
+      <h5 className="h5-title">{productDetails.title}</h5>
       <div className="product">
         {" "}
         <div className="product-image">
-          <img className="image-details" src={productDetails.image} alt="product" />
+          <img
+            className="image-details"
+            src={productDetails.image}
+            alt="product"
+          />
         </div>{" "}
         <div className="product-info">
           <div className="description">
-            <h6>description: <br/><br/>{productDetails.description}</h6>
+            <h6>
+              description: <br />
+              <br />
+              {productDetails.description}
+            </h6>
           </div>
-          <br/>
+          <br />
           <br />
           <div>
-            <h6>your price:<br/><br/> {productDetails.price}</h6>
+            <h6>
+              your price:
+              <br />
+              <br /> {productDetails.price}
+            </h6>
           </div>
         </div>
       </div>
       <div className="btnDiv">
-        {/* <button className="addToCart" onClick={()=> addToCart(productDetails.id)}>+</button>
-            <div className='quantity'><div className='quantityNumber'>0</div></div>
-            <button className="addToCart" onClick={()=> removeOfCart(productDetails.id)}>-</button> */}
         <Link to={`/`}>
           <button className="back">home page</button>
         </Link>

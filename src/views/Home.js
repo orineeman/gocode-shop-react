@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Cart from "../components/Cart/Cart";
+import TemporaryDrawer from "../components/Cart/TemporaryDrawer";
 import AddCartContext from "../components/CartContext/AddCartContext";
 import RemoveCartContext from "../components/CartContext/RemoveCartContext";
 import Header from "../components/header/Header";
@@ -50,6 +51,13 @@ export default function Home() {
     const findToCart = productsArr.find((p) => p.id === productId);
     const indexInArrCart = addToTheCartArr.findIndex((p) => p.id === productId);
     if (indexInArrCart === -1) {
+      // filter
+      // map
+      // find
+      // addToTheCartArr.map(product=> { if (product.id === productId ) return {
+      //   ...product,
+      //   quantity: product.quantity + 1
+      // } else return product})
       findToCart.quantity++;
       addToTheCartArr.push(findToCart);
       setAddToTheCartArr([...addToTheCartArr]);
@@ -92,6 +100,18 @@ export default function Home() {
       )
     );
   }
+  const [state, setState] = useState({ left: false });
+  const anchor = "left";
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
   return (
     <div>
       {error ? (
@@ -102,7 +122,6 @@ export default function Home() {
         <span className="loader"></span>
       ) : (
         <>
-          {/* <Hide hideCart={hideCart} hidden={hidden} /> */}
           <AddCartContext.Provider value={{ addToCart: addToCart }}>
             <RemoveCartContext.Provider value={{ removeOfCart: removeOfCart }}>
               {noHidden && (
@@ -111,7 +130,18 @@ export default function Home() {
                   setNoHidden={setNoHidden}
                 />
               )}
+              <TemporaryDrawer
+                toggleDrawer={toggleDrawer}
+                state={state}
+                anchor={anchor}
+                setNoHidden={setNoHidden}
+                addToTheCartArr={addToTheCartArr}
+              />
+
               <Header
+                anchor={anchor}
+                state={state}
+                toggleDrawer={toggleDrawer}
                 setNoHidden={setNoHidden}
                 sumCartProducts={sumCartProducts}
                 categories={categories}

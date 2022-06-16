@@ -4,7 +4,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -18,9 +18,20 @@ const Product = ({ product }) => {
 
   return (
     <div className="product-card">
-      <Card sx={{ maxWidth: 345 }} className="product-card">
+      <Card
+        sx={{
+          margin: 10,
+          maxWidth: 345,
+          minWidth: 150,
+        }}
+      >
         <Link to={`/products/${product.id}`}>
           <CardMedia
+            sx={{
+              margin: 10,
+              maxWidth: "50%",
+              maxHeight: 400,
+            }}
             className="product-image"
             component="img"
             min-height="140"
@@ -28,12 +39,22 @@ const Product = ({ product }) => {
             alt="product"
           />
         </Link>
-        <CardContent className="product-info">
-          <Typography className="products-info" gutterBottom variant="h7" component="div">
+        <CardContent>
+          <Typography
+            className="products-info"
+            gutterBottom
+            variant="h7"
+            component="div"
+          >
             {product.title}
           </Typography>
 
-          <Typography className="products-info" gutterBottom variant="h6" component="div">
+          <Typography
+            className="products-info"
+            gutterBottom
+            variant="h6"
+            component="div"
+          >
             {product.price} $
           </Typography>
         </CardContent>
@@ -57,7 +78,6 @@ const Product = ({ product }) => {
           </Button>
         </CardActions>
       </Card>
-      {/*  */}
     </div>
   );
 };

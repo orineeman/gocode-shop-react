@@ -7,6 +7,8 @@ function valuetext(value) {
 }
 
 const Header = ({
+  anchor,
+  toggleDrawer,
   productsArr,
   categories,
   filterByPrice,
@@ -25,11 +27,10 @@ const Header = ({
   };
 
   return (
-    
     <nav className="product-filter">
       <div className="logocart">
         <h1>Gocode-shop</h1>
-        <div className="cart-icon-flex" onClick={() => setNoHidden(true)}>
+        <div className="cart-icon-flex" onClick={toggleDrawer(anchor, true)}>
           <img
             className="cart-icon"
             src="https://img.icons8.com/material-rounded/344/shopping-cart-loaded.png"

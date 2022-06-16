@@ -1,16 +1,12 @@
 import Product from "../product/Product";
 import "./Products.css";
 
-const Products = ({productsArr}) => {
+const Products = ({ productsArr }) => {
   return (
     <section className="products">
-      
-       { 
-      productsArr.map((product) => (
+      {productsArr.map((product) => (
         <Product key={product.id} product={product} />
-        
-      ))
-      } 
+      ))}
     </section>
   );
 };

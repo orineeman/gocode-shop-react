@@ -11,7 +11,7 @@
 }
 .div-cart-product {
   overflow-y: scroll;
-  width: 100%;
+  width: 100;
   height: 440px;
   border: 2px solid #7e4dbe;
 }
@@ -41,13 +41,12 @@
   }
 }
 .div-cart {
-  width: 100%px;
   height: 150px;
   display: flex;
   justify-content: space-around;
   background-color: rgb(236, 214, 255);
   align-items: center;
-  margin: -30px -30px 0px -30px;
+  margin: 0;
   border: 1px solid black;
 }
 p {
@@ -61,8 +60,8 @@ p {
   border-radius: 30px;
 }
 .price {
-  margin-top: 30px;
-  width: 100%;
+  margin: 30px;
+  width: 80%;
   height: 40px;
   padding-top: 10px;
   background-color: rgb(236, 214, 255);
@@ -73,37 +72,23 @@ p {
 }
 @media (max-width: 480px) {
   .cart {
-    /* position: fixed; */
-    width: 90%;
+    width: 70%;
+    margin: 0;
     height: 680px;
     background-color: rgb(255, 255, 255);
     padding: 0px;
     background-color: rgb(255, 255, 255);
-    /* animation-duration: 0.1s; */
-    /* animation-name: show-cart; */
-    /* box-shadow: 0; */
-    /* z-index: 2; */
   }
   .div-cart-product {
     position: relative;
     left: -10px;
-
-
-    /* overflow-y: scroll; */
-    /* width: 100%; */
-    /* height: 400px; */
     border: 10px solid #7e4dbe;
-    /* margin-left: -20px; */
   }
 
   .div-cart {
-    /* width: 100%px; */
     padding-top: 20px;
     height: 100px;
-    /* display: flex; */
     justify-content: center;
-    /* background-color: rgb(236, 214, 255); */
-    /* align-items: center; */
     margin: -30px -30px 0px -30px;
     border: 0px solid black;
   }
@@ -114,9 +99,9 @@ p {
     padding: 0px;
   }
   .price {
-    width: 100%;
+    width: 80%;
     height: 120px;
     margin-top: 0ch;
-    border-radius:0;
+    border-radius: 0;
   }
 }

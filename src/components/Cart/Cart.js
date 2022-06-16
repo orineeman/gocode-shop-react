@@ -1,29 +1,25 @@
 import ProductCart from "../ProductCart/ProductCart";
 import "./Cart.css";
 
-function Cart({ addToTheCartArr ,setNoHidden}) {
+function Cart({ addToTheCartArr, setNoHidden }) {
   let total = 0;
   addToTheCartArr.forEach((p) => {
     total += p.price * p.quantity;
   });
   return (
     <div className="cart">
-
       <div className="div-cart">
         <p>Your cart</p>
-        <button className="close-cart" 
-        onClick={()=>setNoHidden(false)}
-        >
+        <button className="close-cart" onClick={() => setNoHidden(false)}>
           <h3>Hide cart</h3>
         </button>
-      
       </div>
       <div className="div-cart-product">
-      {addToTheCartArr.map((product) => (
-        <ProductCart key={product.id} product={product} />
-      ))}
-</div>
-      <div className="price">Total cost: {total}  $</div>
+        {addToTheCartArr.map((product) => (
+          <ProductCart key={product.id} product={product} />
+        ))}
+      </div>
+      <div className="price">Total cost: {total} $</div>
     </div>
   );
 }

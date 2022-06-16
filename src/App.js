@@ -4,10 +4,9 @@ import Home from "./views/Home";
 import ProductDetails from "./views/ProductDetails";
 
 const App = () => {
-
   return (
     <div>
-       <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products/:productId" element={<ProductDetails />} />
       </Routes>
