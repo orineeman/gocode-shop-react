@@ -1,109 +1,71 @@
 import express from "express";
-import fs from "fs/promises";
-// const port = 8000;
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 const app = express();
+app.use(express.static("client/build"));
 app.use(express.json());
+dotenv.config();
 
-app.get("/products", (req, res) => {
-  fs.readFile("./products.json", "utf-8").then((products) => {
-    const productsInJson = JSON.parse(products);
-    if (req.query) {
-      const { title } = req.query;
-      const filterProducts = productsInJson.filter((product) =>
+const Product = mongoose.model("Product", {
+  title: String,
+  price: Number,
+  description: String,
+  category: String,
+  image: String,
+});
+
+app.get("/api/products", (req, res) => {
+  const { title } = req.query;
+  Product.find().then((products) => {
+    if (title) {
+      const productsFilter = products.filter((product) =>
         product.title.toLowerCase().includes(title.toLowerCase())
       );
-      res.send(filterProducts);
+      res.send(productsFilter);
     } else {
-      res.send(productsInJson);
+      res.send(products);
     }
   });
 });
 
-app.get("/products/:id", (req, res) => {
-  fs.readFile("./products.json", "utf-8").then((products) => {
-    const productsInJson = JSON.parse(products);
-    const requestedProduct = productsInJson.find(
-      (product) => product.id === +req.params.id
-    );
-    res.send(requestedProduct);
-  });
+app.post("/api/products", (req, res) => {
+  const { title } = req.body;
+  Product.insertMany([
+    {
+      title,
+      price: 30,
+    },
+  ]).then((products) => res.send(products));
 });
 
-app.post("/products", (req, res) => {
-  console.log(req.body);
-  if (req.body.title) {
-    fs.readFile("./products.json", "utf-8").then((products) => {
-      const productsInJson = JSON.parse(products);
-      const newProduct = {
-        id: getMaxId(productsInJson) + 1,
-        title: req.body.title,
-        price: 0,
-        description: "no description",
-        category: "no category",
-        image: "no image",
-        rating: {
-          rate: 0,
-          count: 0,
-        },
-      };
-      productsInJson.push(newProduct);
-      fs.writeFile("./products.json", JSON.stringify(productsInJson));
-      res.send(productsInJson);
-    });
-  } else res.send("please enter product");
-});
-
-app.patch("/products/:productId", (req, res) => {
+app.patch("/api/products/:productId", (req, res) => {
+  const { title } = req.body;
   const { productId } = req.params;
-  fs.readFile("./products.json", "utf-8")
-    .then((products) => {
-      console.log(products);
-      const productsInJson = JSON.parse(products);
-      const productIndex = productsInJson.findIndex(
-        (product) => product.id === +productId
-      );
-      productsInJson[productIndex] = {
-        ...productsInJson[productIndex],
-        ...req.body,
-      };
-      fs.writeFile("./products.json", JSON.stringify(productsInJson)).then(
-        () => {
-          res.send(productsInJson[productIndex]);
-        }
-      );
-    })
-    .catch((e) => res.send("error"));
+  Product.findByIdAndUpdate(productId, {
+    title,
+  })
+    .then((product) => res.send(product))
+    .catch((e) => res.send("ERROR!"));
 });
 
-function getMaxId(arr) {
-  const ids = arr.map((object) => {
-    return object.id;
-  });
-
-  const max = Math.max(...ids);
-  return max;
-}
-
-app.delete("/products/:productId", (req, res) => {
+app.delete("/api/products/:productId", (req, res) => {
   const { productId } = req.params;
-  fs.readFile("./products.json", "utf-8")
-    .then((products) => {
-      const productsInJson = JSON.parse(products);
-      const productIndex = productsInJson.findIndex(
-        (product) => product.id === +productId
-      );
-      if (productIndex >= 0) {
-        productsInJson.splice(productIndex, 1);
-      }
-      fs.writeFile("./products.json", JSON.stringify(productsInJson)).then(
-        () => {
-          res.send(productsInJson);
-        }
-      );
-    })
-    .catch((e) => res.send("error"));
+  Product.findByIdAndRemove(productId)
+    .then((product) => res.send(product))
+    .catch((e) => res.send("ERROR!"));
 });
 
-// app.listen(port, () => console.log(`listening on port ${port}`));
-app.listen(8000);
+app.get("*", (req, res) => {
+  res.sendFile("/client/build/index.html");
+});
+
+const PORT = process.env.PORT || 8000;
+
+// mongoose.connect("mongodb://localhost:27017/go-code-shop").then(() => {
+const { DB_PASS, DB_USER, DB_HOST, DB_NAME } = process.env;
+mongoose
+  .connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`)
+  .then(() => {
+    app.listen(PORT);
+  });

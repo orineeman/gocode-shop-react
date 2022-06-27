@@ -15,7 +15,6 @@ import "./Product.css";
 const Product = ({ product }) => {
   const { addToCart } = useContext(AddCartContext);
   const { removeOfCart } = useContext(RemoveCartContext);
-
   return (
     <div className="product-card">
       <Card
@@ -62,7 +61,7 @@ const Product = ({ product }) => {
           <Button
             className="addToCart"
             size="small"
-            onClick={() => addToCart(product.id)}
+            onClick={() => addToCart(product._id)}
           >
             +
           </Button>
@@ -72,7 +71,7 @@ const Product = ({ product }) => {
           <Button
             className="addToCart"
             size="small"
-            onClick={() => removeOfCart(product.id)}
+            onClick={() => removeOfCart(product._id)}
           >
             -
           </Button>

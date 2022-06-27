@@ -48,8 +48,10 @@ export default function Home() {
     }
   }
   function addToCart(productId) {
-    const findToCart = productsArr.find((p) => p.id === productId);
-    const indexInArrCart = addToTheCartArr.findIndex((p) => p.id === productId);
+    const findToCart = productsArr.find((p) => p._id === productId);
+    const indexInArrCart = addToTheCartArr.findIndex(
+      (p) => p._id === productId
+    );
     if (indexInArrCart === -1) {
       // filter
       // map
@@ -70,7 +72,7 @@ export default function Home() {
 
   function removeOfCart(productId) {
     const indexInArrCartToRemove = addToTheCartArr.findIndex(
-      (p) => p.id === productId
+      (p) => p._id === productId
     );
     if (indexInArrCartToRemove === -1) {
       console.log("not on cart");
@@ -79,7 +81,7 @@ export default function Home() {
       setAddToTheCartArr([...addToTheCartArr]);
     } else {
       arrProductsCart = addToTheCartArr.filter(
-        (product) => product.id !== productId
+        (product) => product._id !== productId
       );
       addToTheCartArr[indexInArrCartToRemove].quantity--;
       setAddToTheCartArr([...arrProductsCart]);

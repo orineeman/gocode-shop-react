@@ -17,9 +17,9 @@ function ProductCart({ product }) {
           <h6>{product.price} $</h6>
         </div>
         <div className="btn-div">
-          <button onClick={() => addToCart(product.id)}>+</button>
+          <button onClick={() => addToCart(product._id)}>+</button>
           <div className="quantity">{product.quantity}</div>
-          <button onClick={() => removeOfCart(product.id)}>-</button>
+          <button onClick={() => removeOfCart(product._id)}>-</button>
         </div>
       </div>
     </div>

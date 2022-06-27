@@ -16,7 +16,7 @@ function Cart({ addToTheCartArr, setNoHidden }) {
       </div>
       <div className="div-cart-product">
         {addToTheCartArr.map((product) => (
-          <ProductCart key={product.id} product={product} />
+          <ProductCart key={product._id} product={product} />
         ))}
       </div>
       <div className="price">Total cost: {total} $</div>
