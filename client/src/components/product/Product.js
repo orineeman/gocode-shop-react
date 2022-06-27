@@ -25,7 +25,7 @@ const Product = ({ product }) => {
           minWidth: 150,
         }}
       >
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/${product._id}`}>
           <CardMedia
             sx={{
               margin: 10,

@@ -19,7 +19,7 @@ export default function Home() {
   const [noHidden, setNoHidden] = useState(false);
   const fetchProducts = () => {
     setIsLoading(true);
-    fetch("https://fakestoreapi.com/products")
+    fetch("/api/products")
       .then((res) => res.json())
       .then((products) => {
         products.forEach((p) => (p.quantity = 0));
